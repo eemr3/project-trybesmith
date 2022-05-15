@@ -11,8 +11,9 @@ export default class AuthUser {
     algorithm: 'HS256',
   };
 
-  public createToken = (user: object): string => {
-    const token = jwt.sign({ data: user }, this.SECRET_KEY, this.config);
+  public createToken = (user: any): string => {
+    const { username, password } = user;
+    const token = jwt.sign({ username, password }, this.SECRET_KEY, this.config);
     return token;
   };
 
