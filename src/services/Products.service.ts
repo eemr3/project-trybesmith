@@ -10,9 +10,18 @@ export default class ProductService {
     return products;
   };
 
-  public create = async (name: string, amount: string): Promise<IProduct> => {
-    const product = await this.model.create(name, amount);
+  public create = async (
+    name: string,
+    amount: string,
+    orderId: number,
+  ): Promise<IProduct> => {
+    const product = await this.model.create(name, amount, orderId);
 
     return product;
+  };
+
+  public update = async (orderId: number, productsId: number) => {
+    const updateProduct = await this.model.update(orderId, productsId);
+    return updateProduct;
   };
 }

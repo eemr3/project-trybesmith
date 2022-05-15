@@ -11,8 +11,8 @@ export default class ProductController {
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { name, amount } = req.body;
-    const product = await this.service.create(name, amount);
+    const { name, amount, orderId } = req.body;
+    const product = await this.service.create(name, amount, orderId);
 
     return res.status(201).json(product);
   };

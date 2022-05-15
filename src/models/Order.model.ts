@@ -1,3 +1,4 @@
+import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import { IOrder, IProdOrder } from '../interfaces/Order.interface';
 
@@ -18,5 +19,14 @@ export default class OrderModel {
     ON o.id = pd.orderId`);
 
     return result as IProdOrder[];
+  };
+
+  public createOrder = async (userId: number) => {
+    const [newOrder] = await connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.Orders (userId) VALUES(?)',
+      [userId],
+    );
+
+    return { id: newOrder.insertId };
   };
 }

@@ -11,9 +11,12 @@ type User = {
 };
 
 export default class UserModel {
-  public getByUserName = async (userName: string, password: string): Promise<ILogin[]> => {
+  public getByUserName = async (
+    userName: string,
+    password: string,
+  ): Promise<ILogin[]> => {
     const [user] = await connection.execute(
-      'SELECT username, password FROM Trybesmith.Users WHERE username = ? and password = ?',
+      'SELECT id, username, password FROM Trybesmith.Users WHERE username = ? and password = ?',
       [userName, password],
     );
     return user as ILogin[];

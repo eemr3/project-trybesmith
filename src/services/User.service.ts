@@ -8,10 +8,16 @@ type User = {
   password: string;
 };
 
+type Decoder = {
+  username: string;
+  password: string;
+  
+};
+
 export default class UserService {
   public model = new UserModel();
 
-  public getByUsrName = async (decoder:any) => {
+  public getByUsrName = async (decoder:Decoder) => {
     const { username, password } = decoder;
     const user = await this.model.getByUserName(username, password);
 

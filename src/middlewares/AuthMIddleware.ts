@@ -7,21 +7,21 @@ const service = new UserService();
 
 const autheticationUser = async (
   req: Request,
-  res: Response, 
+  res: Response,
   next: NextFunction,
 ): Promise<Response | void> => {
   const { authorization } = req.headers;
-  
+
   const token = authorization;
 
-  if (!token) return res.status(404).json({ message: 'Token not foud' });
-  
+  if (!token) return res.status(401).json({ message: 'Token not found' });
+
   const decoder = authUser.decodedToken(token);
-  
-  if (!decoder) return res.status(401).json({ message: 'Expirede or token invalid' });
+
+  if (!decoder) return res.status(401).json({ message: 'Invalid token' });
   const userExist = await service.getByUsrName(decoder);
   if (!userExist) return res.status(400).json({ message: 'User not found' });
-  
+
   next();
 };
 

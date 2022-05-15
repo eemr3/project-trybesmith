@@ -9,10 +9,14 @@ export default class ProductModel {
     return result as IProduct[];
   };
 
-  public create = async (name: string, amount: string): Promise<IProduct> => {
+  public create = async (
+    name: string,
+    amount: string,
+    orderId: number | null = null,
+  ): Promise<IProduct> => {
     const [product] = await connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.Products (name, amount) VALUES(?,?)',
-      [name, amount],
+      'INSERT INTO Trybesmith.Products (name, amount, orderId) VALUES(?,?,?)',
+      [name, amount, orderId],
     );
 
     return {
@@ -20,5 +24,13 @@ export default class ProductModel {
       name,
       amount,
     };
+  };
+
+  public update = async (orderId: number, productsId: number) => {
+    const updateProduct = await connection.execute(
+      'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
+      [orderId, productsId],
+    );
+    return updateProduct;
   };
 }
