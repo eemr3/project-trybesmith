@@ -1,5 +1,5 @@
 import ProductModel from '../models/Product.model';
-import IProduct from '../../interfaces/Product.interface';
+import IProduct from '../interfaces/Product.interface';
 
 export default class ProductService {
   public model = new ProductModel();

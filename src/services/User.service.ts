@@ -1,4 +1,4 @@
-import IUser from '../../interfaces/User.interface';
+import IUser from '../interfaces/User.interface';
 import UserModel from '../models/User.model';
 
 type User = {
