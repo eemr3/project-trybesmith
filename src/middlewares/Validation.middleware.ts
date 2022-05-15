@@ -1,4 +1,5 @@
 import { Response, Request, NextFunction } from 'express';
+import validateLogin from '../schemas/Login.schema';
 import validateProduct from '../schemas/Products.schema';
 import validateUser from '../schemas/Users.schema';
 
@@ -42,6 +43,16 @@ export default class ValidationMiddleware {
       return res.status(422).json({ message: error.message });
     }
     
+    next();
+  };
+
+  public validationLogin = (req: Request, res: Response, next: NextFunction) => {
+    const { username, password } = req.body;
+    const { error } = validateLogin.validate({ username, password });
+    if (error) {
+      return res.status(400).json({ message: error.message });
+    }
+
     next();
   };
 }
