@@ -11,6 +11,13 @@ type User = {
 export default class UserService {
   public model = new UserModel();
 
+  public getByUsrName = async (decoder:any) => {
+    const { username, password } = decoder;
+    const user = await this.model.getByUserName(username, password);
+
+    return user;
+  };
+
   public create = async ({ username, classe, level, password }: User): Promise<IUser> => {
     const user = await this.model.create({ username, classe, level, password });
 
