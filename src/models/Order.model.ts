@@ -1,5 +1,5 @@
 import connection from './connection';
-import { IOrder, IProdOrder } from '../../interfaces/Order.interface';
+import { IOrder, IProdOrder } from '../interfaces/Order.interface';
 
 export default class OrderModel {
   public getAll = async (): Promise<IOrder[]> => {
