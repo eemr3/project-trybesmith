@@ -101,3 +101,7 @@ Senha do BD (Lembrando que se tratad de um ambiente de estudos)
 ```bash
   password
 ```
+## Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
